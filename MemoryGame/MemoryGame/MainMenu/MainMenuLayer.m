@@ -16,15 +16,32 @@
 {
     if ((self = [super init])) {
         
+        CGSize size = [[CCDirector sharedDirector] winSize];
         
-        CCMenuItem *play = [CCMenuItemFont itemWithString:@"Play" block:^(id sender) {
+        
+        CCLabelTTF *title = [CCLabelTTF labelWithString:@"Memory Game" fontName:@"Marker Felt" fontSize:60];
+        title.position = ccp(size.width / 2, size.height / 2 + 100);
+        
+        title.color = ccMAGENTA;
+        
+        [self addChild:title];
+    
+        
+        CCMenuItem *play1 = [CCMenuItemFont itemWithString:@"Play Easy" block:^(id sender) {
+            [self startGameWithDifficulty:EASY];
+        }];
+        CCMenuItem *play2 = [CCMenuItemFont itemWithString:@"Play Medium" block:^(id sender) {
+            [self startGameWithDifficulty:MEDIUM];
+        }];
+        CCMenuItem *play3 = [CCMenuItemFont itemWithString:@"Play Hard" block:^(id sender) {
             [self startGameWithDifficulty:HARD];
         }];
         
-		CCMenu *menu = [CCMenu menuWithItems: play, nil];
+        
+		CCMenu *menu = [CCMenu menuWithItems: play1, play2, play3, nil];
 		
-		[menu alignItemsHorizontallyWithPadding:20];
-        CGSize size = [[CCDirector sharedDirector] winSize];
+		[menu alignItemsVerticallyWithPadding:20];
+        
 		[menu setPosition:ccp( size.width/2, size.height/2 - 50)];
 		
 		// Add the menu to the layer

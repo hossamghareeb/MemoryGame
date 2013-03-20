@@ -111,7 +111,7 @@
     
     [self addChild:livesTitle];
     
-    livesDisplay  = [CCLabelTTF labelWithString:@"10" fontName:@"Marker Felt" fontSize:20];
+    livesDisplay  = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", maxTiles] fontName:@"Marker Felt" fontSize:20];
     livesDisplay.position  = livesPosition;
     
     [self addChild:livesDisplay];
@@ -244,11 +244,13 @@
     MemoryTile *tile2 = [selectedTiles objectAtIndex:1];
     
     if (tile1.number == tile2.number) {
-        score ++;
-        lives++;
-        [self removeTileFromView:tile1];
-        [self removeTileFromView:tile2];
-       
+        
+        
+        [self animateTileAndRemove:tile1];
+        [self animateTileAndRemove:tile2];
+        [self animateScoreDisplay];
+        [self updateLivesDisplaySilent];
+        [self checkForGameOver];
     }
     else
     {
@@ -257,6 +259,9 @@
         [tile2 flip];
         
         lives -- ;
+        
+        [self animateLivesDisplay];
+        
         if (lives == 0) {
             isGameOver = YES;
         }
@@ -265,6 +270,133 @@
     [selectedTiles removeAllObjects];
     
 }
+
+-(void)animateTileAndRemove:(MemoryTile *)tile
+{
+    
+    float velocity = 600;
+    CGPoint differenc = ccpSub(scoreDisplaly.position, tile.position);
+    
+    float duration = ccpLength(differenc) / velocity;
+    
+    id moveTo = [CCMoveTo actionWithDuration:duration position:scoreDisplaly.position];
+    
+    id scaleOut = [CCScaleTo actionWithDuration:duration scale:0.01];
+    
+    id remove = [CCCallFuncN actionWithTarget:self selector:@selector(removeTileFromView:)];
+    
+    id moveAndScale = [CCSpawn actions:moveTo,scaleOut, nil];
+    
+    [tile runAction:[CCSequence actions:moveAndScale, remove, nil]];
+    
+    [[SimpleAudioEngine sharedEngine] playEffect:SOUND_SCORE];
+    
+    //remove it from the current tiles array
+    [currentTiles removeObject:tile];
+    
+    lives = currentTiles.count / 2;
+    
+    score ++;
+    
+}
+
+-(void)animateScoreDisplay
+{
+    id delay = [CCDelayTime actionWithDuration:1]; //wait untill matched tiles are animated
+    id scaleUp = [CCScaleTo actionWithDuration:0.2 scale:2];
+    id update = [CCCallFunc actionWithTarget:self selector:@selector(updateScoreDisplay)];
+    id delayAgain = [CCDelayTime actionWithDuration:0.2];
+    id scaleDown = [CCScaleTo actionWithDuration:0.2 scale:1];
+    
+    id beGreen = [CCCallBlock actionWithBlock:^{
+        
+                    scoreDisplaly.color = ccGREEN;
+            }];
+    
+    id beWhite = [CCCallBlock actionWithBlock:^{
+        scoreDisplaly.color = ccWHITE;
+    }];
+    
+    [scoreDisplaly runAction:[CCSequence actions:delay,
+                              scaleUp,
+                              update,
+                              [CCSpawn actions:delayAgain, beGreen, nil],
+                              scaleDown, beWhite,nil]];
+    
+}
+
+-(void)updateScoreDisplay
+{
+    [scoreDisplaly setString:[NSString stringWithFormat:@"%d", score]];
+    [[SimpleAudioEngine sharedEngine] playEffect:SOUND_SCORE];
+}
+
+-(void)animateLivesDisplay
+{
+    id delay = [CCDelayTime actionWithDuration:1]; //wait untill matched tiles are animated
+    id scaleUp = [CCScaleTo actionWithDuration:0.2 scale:2];
+    id update = [CCCallFunc actionWithTarget:self selector:@selector(updateLivesDisplay)];
+    id delayAgain = [CCDelayTime actionWithDuration:0.2];
+    id scaleDown = [CCScaleTo actionWithDuration:0.2 scale:1];
+    
+    id beRed = [CCCallBlock actionWithBlock:^{
+        
+        livesDisplay.color = ccRED;
+    }];
+    
+    id beWhite = [CCCallBlock actionWithBlock:^{
+        livesDisplay.color = ccWHITE;
+    }];
+    
+    [livesDisplay runAction:[CCSequence actions:delay,
+                              scaleUp,
+                              update,
+                              [CCSpawn actions:delayAgain, beRed, nil],
+                              scaleDown, beWhite,nil]];
+    
+}
+
+-(void)updateLivesDisplay
+{
+    [livesDisplay setString:[NSString stringWithFormat:@"%d", lives]];
+    [[SimpleAudioEngine sharedEngine] playEffect:SOUND_TILE_WRONG];
+    [self checkForGameOver];
+}
+
+-(void)updateLivesDisplaySilent
+{
+    [livesDisplay setString:[NSString stringWithFormat:@"%d", lives]];
+}
+
+
+-(void)checkForGameOver
+{
+    NSString *gameOverMsg;
+    if (currentTiles.count == 0) {
+        //you win
+        gameOverMsg = @"You Win!";
+    }
+    else
+        
+    {
+        if (lives <= 0) {
+            gameOverMsg = @"You lose :(";
+        }
+        else
+        {
+            return;
+        }
+    }
+    
+    CCLabelTTF *gameOverLabel = [CCLabelTTF labelWithString:gameOverMsg fontName:@"Marker Felt" fontSize:70];
+    gameOverLabel.position = ccp(winSize.width / 2, winSize.height / 2);
+    
+    [self addChild:gameOverLabel z:100];
+    
+    
+}
+
+
 
 -(void)removeTileFromView:(MemoryTile *)tile
 {
