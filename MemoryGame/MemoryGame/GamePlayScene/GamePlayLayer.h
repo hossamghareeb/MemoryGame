@@ -8,15 +8,46 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "MemoryTile.h"
+#import "MainMenuScene.h"
 
-@interface GamePlayLayer : CCLayer {
+@interface GamePlayLayer : CCLayer <CCTargetedTouchDelegate>{
     
+    //board info
+    int boardRows;
+    int boardColumns;
+    float boardWidth;
+    float boardHeight;
+    int boardOffsetX;
+    int boardOffsetY;
+    int paddingWidth;
+    int paddingHeight;
+    
+    //arrays of tiles
+    NSMutableArray *allTiles;  //all the tiles
+    NSMutableArray *currentTiles;  //current tiles that not have been matched yet
+    NSMutableArray *selectedTiles;  //the selected to be matched
+    
+    int maxTiles;
+    
+    CGSize winSize;
+    CGSize tileSize;
+    
+    CCSpriteBatchNode *memorySheet;
+    
+    CCSprite *backButton;
+    
+    int lives;
+    CCLabelTTF *livesDisplay;
+    
+    int score;
+    CCLabelTTF *scoreDisplaly;
+    
+    BOOL isGameOver;
     
 }
 
-@property(nonatomic, assign) int numOfRows;
-@property(nonatomic, assign) int numOfColumns;
 
 +(id)layerWithRows:(int)rows andColumns:(int)columns;
-
+-(id)initWithRows:(int)rows andColumns:(int)columns;
 @end

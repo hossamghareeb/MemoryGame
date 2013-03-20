@@ -136,6 +136,15 @@
 		217B547A16F9C0EE00063312 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 217B547916F9C0EE00063312 /* MainMenuScene.m */; };
 		217B547D16F9C2DA00063312 /* GamePlayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 217B547C16F9C2DA00063312 /* GamePlayScene.m */; };
 		217B548016F9C34D00063312 /* GamePlayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 217B547F16F9C34D00063312 /* GamePlayLayer.m */; };
+		217B548616F9CDF300063312 /* memorysheet-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 217B548216F9CDF300063312 /* memorysheet-hd.plist */; };
+		217B548716F9CDF300063312 /* memorysheet-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 217B548316F9CDF300063312 /* memorysheet-hd.png */; };
+		217B548816F9CDF300063312 /* memorysheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 217B548416F9CDF300063312 /* memorysheet.plist */; };
+		217B548916F9CDF300063312 /* memorysheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 217B548516F9CDF300063312 /* memorysheet.png */; };
+		217B548D16F9E5D100063312 /* MemoryTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 217B548C16F9E5D100063312 /* MemoryTile.m */; };
+		217B549416F9F07400063312 /* button.caf in Resources */ = {isa = PBXBuildFile; fileRef = 217B549016F9F07400063312 /* button.caf */; };
+		217B549516F9F07400063312 /* buzzer.caf in Resources */ = {isa = PBXBuildFile; fileRef = 217B549116F9F07400063312 /* buzzer.caf */; };
+		217B549616F9F07400063312 /* harprun.caf in Resources */ = {isa = PBXBuildFile; fileRef = 217B549216F9F07400063312 /* harprun.caf */; };
+		217B549716F9F07400063312 /* whoosh.caf in Resources */ = {isa = PBXBuildFile; fileRef = 217B549316F9F07400063312 /* whoosh.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -407,6 +416,17 @@
 		217B547C16F9C2DA00063312 /* GamePlayScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePlayScene.m; sourceTree = "<group>"; };
 		217B547E16F9C34D00063312 /* GamePlayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePlayLayer.h; sourceTree = "<group>"; };
 		217B547F16F9C34D00063312 /* GamePlayLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePlayLayer.m; sourceTree = "<group>"; };
+		217B548216F9CDF300063312 /* memorysheet-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "memorysheet-hd.plist"; sourceTree = "<group>"; };
+		217B548316F9CDF300063312 /* memorysheet-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "memorysheet-hd.png"; sourceTree = "<group>"; };
+		217B548416F9CDF300063312 /* memorysheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = memorysheet.plist; sourceTree = "<group>"; };
+		217B548516F9CDF300063312 /* memorysheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = memorysheet.png; sourceTree = "<group>"; };
+		217B548B16F9E5D100063312 /* MemoryTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryTile.h; sourceTree = "<group>"; };
+		217B548C16F9E5D100063312 /* MemoryTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoryTile.m; sourceTree = "<group>"; };
+		217B548E16F9E98500063312 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		217B549016F9F07400063312 /* button.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = button.caf; sourceTree = "<group>"; };
+		217B549116F9F07400063312 /* buzzer.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = buzzer.caf; sourceTree = "<group>"; };
+		217B549216F9F07400063312 /* harprun.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = harprun.caf; sourceTree = "<group>"; };
+		217B549316F9F07400063312 /* whoosh.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whoosh.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -465,8 +485,10 @@
 		217B52EC16F9BDC300063312 /* MemoryGame */ = {
 			isa = PBXGroup;
 			children = (
+				217B548E16F9E98500063312 /* Constants.h */,
 				217B546416F9BDC600063312 /* AppDelegate.h */,
 				217B546516F9BDC600063312 /* AppDelegate.m */,
+				217B548A16F9E5BC00063312 /* MemoryTile */,
 				217B547716F9BFC100063312 /* GamePlayScene */,
 				217B547216F9BF4800063312 /* Intro */,
 				217B547316F9BF4800063312 /* MainMenu */,
@@ -480,6 +502,8 @@
 		217B52ED16F9BDC300063312 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				217B548F16F9F07400063312 /* audio */,
+				217B548116F9CDE900063312 /* gfx */,
 				217B52EE16F9BDC300063312 /* Default.png */,
 				217B52F016F9BDC300063312 /* Default-Landscape~ipad.png */,
 				217B52F216F9BDC300063312 /* fps_images.png */,
@@ -871,6 +895,38 @@
 			path = GamePlayScene;
 			sourceTree = "<group>";
 		};
+		217B548116F9CDE900063312 /* gfx */ = {
+			isa = PBXGroup;
+			children = (
+				217B548216F9CDF300063312 /* memorysheet-hd.plist */,
+				217B548316F9CDF300063312 /* memorysheet-hd.png */,
+				217B548416F9CDF300063312 /* memorysheet.plist */,
+				217B548516F9CDF300063312 /* memorysheet.png */,
+			);
+			name = gfx;
+			path = Resources/gfx;
+			sourceTree = "<group>";
+		};
+		217B548A16F9E5BC00063312 /* MemoryTile */ = {
+			isa = PBXGroup;
+			children = (
+				217B548B16F9E5D100063312 /* MemoryTile.h */,
+				217B548C16F9E5D100063312 /* MemoryTile.m */,
+			);
+			path = MemoryTile;
+			sourceTree = "<group>";
+		};
+		217B548F16F9F07400063312 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				217B549016F9F07400063312 /* button.caf */,
+				217B549116F9F07400063312 /* buzzer.caf */,
+				217B549216F9F07400063312 /* harprun.caf */,
+				217B549316F9F07400063312 /* whoosh.caf */,
+			);
+			path = audio;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -934,6 +990,14 @@
 				217B530316F9BDC300063312 /* Icon@2x.png in Resources */,
 				217B530616F9BDC300063312 /* iTunesArtwork in Resources */,
 				217B544416F9BDC600063312 /* ChangeLog in Resources */,
+				217B548616F9CDF300063312 /* memorysheet-hd.plist in Resources */,
+				217B548716F9CDF300063312 /* memorysheet-hd.png in Resources */,
+				217B548816F9CDF300063312 /* memorysheet.plist in Resources */,
+				217B548916F9CDF300063312 /* memorysheet.png in Resources */,
+				217B549416F9F07400063312 /* button.caf in Resources */,
+				217B549516F9F07400063312 /* buzzer.caf in Resources */,
+				217B549616F9F07400063312 /* harprun.caf in Resources */,
+				217B549716F9F07400063312 /* whoosh.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1051,6 +1115,7 @@
 				217B547A16F9C0EE00063312 /* MainMenuScene.m in Sources */,
 				217B547D16F9C2DA00063312 /* GamePlayScene.m in Sources */,
 				217B548016F9C34D00063312 /* GamePlayLayer.m in Sources */,
+				217B548D16F9E5D100063312 /* MemoryTile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

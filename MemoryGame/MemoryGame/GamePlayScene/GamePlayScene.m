@@ -15,13 +15,21 @@
 
 +(CCScene *)sceneWithRows:(int)rows andColumns:(int)columns
 {
-    CCScene *scene = [CCScene node];
+ 
+    return [[[GamePlayScene alloc] initWithRows:rows andColumns:columns] autorelease];
+}
+
+-(id)initWithRows:(int)rows andColumns:(int)columns
+{
+    if ((self = [super init])) {
+        
+        GamePlayLayer *layer = [GamePlayLayer layerWithRows:rows andColumns:columns];
+        
+        [self addChild:layer];
+
+    }
     
-    GamePlayLayer *layer = [GamePlayLayer layerWithRows:rows andColumns:columns];
-    
-    [scene addChild:layer];
-    
-    return scene;
+    return self;
 }
 
 @end

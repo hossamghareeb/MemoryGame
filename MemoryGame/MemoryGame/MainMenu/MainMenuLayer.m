@@ -17,6 +17,18 @@
     if ((self = [super init])) {
         
         
+        CCMenuItem *play = [CCMenuItemFont itemWithString:@"Play" block:^(id sender) {
+            [self startGameWithDifficulty:HARD];
+        }];
+        
+		CCMenu *menu = [CCMenu menuWithItems: play, nil];
+		
+		[menu alignItemsHorizontallyWithPadding:20];
+        CGSize size = [[CCDirector sharedDirector] winSize];
+		[menu setPosition:ccp( size.width/2, size.height/2 - 50)];
+		
+		// Add the menu to the layer
+		[self addChild:menu];
         
     }
     return self;
