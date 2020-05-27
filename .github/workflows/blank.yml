@@ -18,7 +18,12 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: print branch name
-      run: echo ${{ github.event }}
+      run: |
+        echo ${{ github.event }}
+        echo ${{ github.ref }}
+        echo ${{ github.head_ref }}
+        echo ${{ github.base_ref }}
+        echo ${{ github.event.pull_request.branch }}
 
     # Runs a single command using the runners shell
     - name: Run a one-line script
